@@ -1,28 +1,61 @@
 //feature 122
 
-import  React from 'react';
+import React ,{Component} from 'react';
 import './App.css';
-import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom'
+import data from "./data.json"
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
+import Product from './component/Product';
 
-function App(props) {
+
+ class App extends Component {
+
+    constructor(){
+        super();
+        this.state = {
+            products : data.products,
+            size : "",
+            sort : ""
+        }
+    }
 
 
-  return (
-    <div className="grid-container">
-      <header>
-        <a  href='/'> React Shopping Cart
-        </a> 
-      </header> 
 
-    <main>Product List</main>
-    <footer>
-      All right is reserved 
+
+
+
+    render() {
+
+        return (
+            <div className="grid-container">
+                <header>
+                    <a href='/'> React Shopping Cart
+        </a>
+                </header>
+
+                <main>
+                <div className="content">
+                <div className="main">
+                <Product
+                    products = {this.state.products}
+                />
+                </div>
+                <div className="side-bar">
+
+                Side Bar
+                </div>
+
+                </div>
+
+                </main>
+                <footer>
+                    All right is reserved
     </footer>
 
-     
-    </div>
 
-  );
+            </div>
+
+        );
+    }
 }
 
-export default App;
+export default App
