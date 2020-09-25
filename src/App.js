@@ -5,6 +5,7 @@ import './App.css';
 import data from "./data.json"
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import Product from './component/Product';
+import Filter from './component/Filter';
 
 
  class App extends Component {
@@ -18,10 +19,50 @@ import Product from './component/Product';
         }
     }
 
+    filterOrder=(event) =>  {
+    const sort = event.target.value
+
+    this.setState({
+        sort : sort,
+        products : this.state.products
+        .slice()
+        .sort((a,b)=>
+            sort === "Lowest"
+            ? a.price > b.price
+            ? 1:-1
+
+            : sort === "Highest"
+            ? a.price < b.price 
+                ? 1
+                : -1
+            :a.id < b.id ? 1:-1
+        
+        )
+    }) }
 
 
 
 
+
+    filterSize =(event)=>{
+       
+        if(event === "")
+        {
+            this.setState({
+                size: event.target.value,
+                products : data.products
+            })
+        }
+        else(
+            this.setState(
+                {size: event.target.value,
+                    products: data.products.filter(products => products.availableSizes.indexOf(event.target.value) >= 0)
+                
+                }
+            )
+        )
+    
+    }
 
     render() {
 
@@ -35,9 +76,19 @@ import Product from './component/Product';
                 <main>
                 <div className="content">
                 <div className="main">
+                <Filter count={this.state.products.length}
+                    sort = {this.state.sort}
+                    size = {this.state.size} 
+                    filterOrder ={this.filterOrder}
+                    filterSize = {this.filterSize}
+                />
+
                 <Product
                     products = {this.state.products}
                 />
+
+
+
                 </div>
                 <div className="side-bar">
 

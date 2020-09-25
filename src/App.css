@@ -116,6 +116,7 @@ footer{
 
 .product-price{
   display: flex;
+  
   justify-content: space-between;
   
   
@@ -137,7 +138,7 @@ footer{
   background-color: #f0f0f0;
   cursor: pointer;
   border-radius: 10px;
-  transition: border-radius 0.9s;
+  transition: border-radius .1s;
 
 }
 
@@ -152,6 +153,21 @@ footer{
 }
 
 
+/* Filters */
+
+.filter {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  margin: 1rem;
+  border-bottom: .1rem #c0c0c0 solid;
+}
+.filter div{
+  flex: 1
+}
+.filter option{
+  border: none;
+}
 
 
 
