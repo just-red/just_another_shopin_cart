@@ -17,18 +17,23 @@ import Cart from './component/Cart';
             products : data.products,
             size : "",
             sort : "",
-            cartItems: [],
-
+            cartItems: JSON.parse(localStorage.getItem("cartItems"))? JSON.parse(localStorage.getItem("cartItems"))
+                        :[]
         }
     }
 
-
+    createOrder = (order) => {
+        alert("Need to create an order for " + order.name)
+    }
 
     removeFromCart = (product) => {
         const cartItems = this.state.cartItems.slice()
         this.setState({
             cartItems: cartItems.filter((x) => x._id !== product._id)
         })
+        localStorage.setItem("cartItems", 
+            JSON.stringify(cartItems.filter((x) => x._id !== product._id)))
+
     
     }
 
@@ -52,6 +57,7 @@ import Cart from './component/Cart';
         }
 
     this.setState({cartItems})
+    localStorage.setItem("cartItems", JSON.stringify(cartItems))
 
     }
 
@@ -133,6 +139,7 @@ import Cart from './component/Cart';
                 <Cart
                     cartItems = {this.state.cartItems}
                     removeFromCart = {this.removeFromCart}
+                    createOrder = {this.createOrder}
                 />
                 </div>
 
