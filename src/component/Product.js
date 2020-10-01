@@ -4,9 +4,8 @@ import '../App.css'
     
 
 
-
-
     render() {
+
         return (
             <div>
             <ul className="products">
@@ -22,7 +21,11 @@ import '../App.css'
                             <div>
                                 ${product.price}
                             </div>
-                            <button className="button primary">Add To Cart</button>
+                            <button 
+                                    onClick={() => this.props.addToCart(product)
+                                    }
+                            className="button primary" 
+                            >Add To Cart</button>
                         </div>
 
                     </div>

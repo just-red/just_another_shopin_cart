@@ -6,6 +6,7 @@ import data from "./data.json"
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import Product from './component/Product';
 import Filter from './component/Filter';
+import Cart from './component/Cart';
 
 
  class App extends Component {
@@ -15,13 +16,49 @@ import Filter from './component/Filter';
         this.state = {
             products : data.products,
             size : "",
-            sort : ""
+            sort : "",
+            cartItems: [],
+
         }
     }
 
+
+
+    removeFromCart = (product) => {
+        const cartItems = this.state.cartItems.slice()
+        this.setState({
+            cartItems: cartItems.filter((x) => x._id !== product._id)
+        })
+    
+    }
+
+
+    addToCart = (product)=> {
+      const cartItems = this.state.cartItems.slice();
+        let alreadyAdded = false
+        
+        cartItems.forEach((item) => {
+            if (item.id === product._id) {
+                item.count++;
+                alreadyAdded = true
+            }
+
+        })
+          if (!alreadyAdded) {
+            cartItems.push(
+                {...product,
+                count: 1}
+            )
+        }
+
+    this.setState({cartItems})
+
+    }
+
+
     filterOrder=(event) =>  {
     const sort = event.target.value
-
+ 
     this.setState({
         sort : sort,
         products : this.state.products
@@ -53,7 +90,7 @@ import Filter from './component/Filter';
                 products : data.products
             })
         }
-        else(
+        else( 
             this.setState(
                 {size: event.target.value,
                     products: data.products.filter(products => products.availableSizes.indexOf(event.target.value) >= 0)
@@ -84,6 +121,7 @@ import Filter from './component/Filter';
                 />
 
                 <Product
+                    addToCart = {this.addToCart}
                     products = {this.state.products}
                 />
 
@@ -92,7 +130,10 @@ import Filter from './component/Filter';
                 </div>
                 <div className="side-bar">
 
-                Side Bar
+                <Cart
+                    cartItems = {this.state.cartItems}
+                    removeFromCart = {this.removeFromCart}
+                />
                 </div>
 
                 </div>
