@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import '../App.css'
-
+import Fade from "react-reveal/Fade"
 
 export default class Cart extends Component {
 
@@ -49,13 +49,11 @@ export default class Cart extends Component {
         return (
             <div>
                     {cartItems.length === 0 ? <div className="cart">Cart is empty</div>
-                    :
-                    
-                    <div className="cart">you have {cartItems.length} items in the cart</div>
-                    
+                    : <div className="cart">you have {cartItems.length} items in the cart</div>
                     }
-
+                    
                     <div className="cart">
+                    <Fade left cascade>
                         <ul className="cart-items">
                             {cartItems.map((item)=> (
 
@@ -76,10 +74,12 @@ export default class Cart extends Component {
 
 
                             ))}
-                        </ul>
+                        </ul> 
+                        </Fade>
                     </div>   
                                
                                     {cartItems.length !== 0 ?
+                                    
                     <div className="cart">
                         <div className="total">
                             Total : $ {""} {cartItems.reduce((a, c) =>
@@ -99,7 +99,7 @@ export default class Cart extends Component {
                    
 
                 {this.state.showForm === true ? <div className="cart">
-
+                                <Fade right cascade>
                     <form  className="form-container" onSubmit= {this.createOrder}>
 
                     
@@ -127,7 +127,7 @@ export default class Cart extends Component {
                     
                     </form>
 
-
+                    </Fade> 
                             </div> :
                     <div> </div>}
 
