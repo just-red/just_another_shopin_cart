@@ -239,8 +239,27 @@ form{width: 100%;}
   border: .1rem #c0c0c0
 solid}
 
+/* 
+product_details */
 
+.product-details{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-height: 96vh;
+ 
+}
 
+.product-details img{
+  max-height: 100vh;
+  max-width: 46rem;
+  margin: 0 auto;
+}
+
+.product-details-description {
+  flex : 1 1;
+  margin: 1rem;
+}
 
 
 
