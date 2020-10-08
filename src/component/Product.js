@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import '../App.css'
 import Fade from "react-reveal/Fade"
-import ReactModal from "react-modal"
+import Modal from "react-modal"
 import Zoom from "react-reveal/Zoom"
 
 
@@ -87,7 +87,7 @@ import Zoom from "react-reveal/Zoom"
                     {product && (
 
 
-                    <ReactModal isOpen={this.state.product}
+                    <Modal isOpen={this.state.product}
                         onRequestClose = {this.handleModalClose}
                     >
                         <Zoom>
@@ -129,7 +129,7 @@ import Zoom from "react-reveal/Zoom"
 
 
 
-                    </ReactModal>
+                    </Modal>
 
 
                     )}
